@@ -2,13 +2,13 @@
 
 
 $mapping = [
-    'QfRPC\YARRPC\QFRpcClient' => __DIR__ . '/QfRPC/YARRPC/QFRpcClient.php',
-    'QfRPC\YARRPC\QFRpcService' => __DIR__ . '/QfRPC/YARRPC/QFRpcService.php',
-    'QfRPC\YARRPC\Core\SdkRequest' => __DIR__ . '/QfRPC/YARRPC/Core/SdkRequest.php',
-    'QfRPC\YARRPC\Core\SdkResponse' => __DIR__ . '/QfRPC/YARRPC/Core/SdkResponse.php',
-    'QfRPC\YARRPC\Auth\Auth' => __DIR__ . '/QfRPC/YARRPC/Auth/Auth.php',
-    'QfRPC\YARRPC\Auth\Singer' => __DIR__ . '/QfRPC/YARRPC/Auth/Singer.php',
-    'QfRPC\YARRPC\Exceptions\SdkException' => __DIR__ . '/QfRPC/YARRPC/Exceptions/SdkException.php',
+    'QfRPC\YARRPC\QFRpcClient' => __DIR__ . '/src/QFRpcClient.php',
+    'QfRPC\YARRPC\QFRpcService' => __DIR__ . '/src/QFRpcService.php',
+    'QfRPC\YARRPC\Core\SdkRequest' => __DIR__ . '/src/Core/SdkRequest.php',
+    'QfRPC\YARRPC\Core\SdkResponse' => __DIR__ . '/src/Core/SdkResponse.php',
+    'QfRPC\YARRPC\Auth\Auth' => __DIR__ . '/src/Auth/Auth.php',
+    'QfRPC\YARRPC\Auth\Singer' => __DIR__ . '/src/Auth/Singer.php',
+    'QfRPC\YARRPC\Exceptions\SdkException' => __DIR__ . '/src/Exceptions/SdkException.php',
 ];
 
 
