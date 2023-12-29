@@ -2,8 +2,8 @@
 
 namespace QfRPC\YARRPC;
 
-use Qfcloud\AuthCenter\Core\SdkRequest;
-use Qfcloud\AuthCenter\Exceptions\SdkException;
+use QfRPC\YARRPC\Core\SdkRequest;
+use QfRPC\YARRPC\Exceptions\SdkException;
 
 class QFRpcClient
 {
