@@ -1,6 +1,6 @@
 <?php
 
-namespace QfRPC\YAFRPC\Auth;
+namespace QfRPC\YARRPC\Auth;
 
 class Singer
 {

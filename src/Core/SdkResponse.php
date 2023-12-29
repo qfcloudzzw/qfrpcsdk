@@ -1,6 +1,6 @@
 <?php
 
-namespace QfRPC\YAFRPC\Core;
+namespace QfRPC\YARRPC\Core;
 
 class SdkResponse
 {

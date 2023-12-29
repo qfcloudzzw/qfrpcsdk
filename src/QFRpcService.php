@@ -1,9 +1,9 @@
 <?php
 
-namespace QfRPC\YAFRPC;
+namespace QfRPC\YARRPC;
 
-use QfRPC\YAFRPC\Auth\Auth;
-use QfRPC\YAFRPC\Exceptions\SdkException;
+use QfRPC\YARRPC\Auth\Auth;
+use QfRPC\YARRPC\Exceptions\SdkException;
 
 class QFRpcService
 {

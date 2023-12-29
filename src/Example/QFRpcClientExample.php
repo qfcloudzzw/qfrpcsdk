@@ -1,7 +1,7 @@
 <?php
 
 require '../../vendor/autoload.php';
-use QfRPC\YAFRPC\QFRpcClient;
+use QfRPC\YARRPC\QFRpcClient;
 
 
 $ak = "9624cd0312cc2f1ad4fcc47366ca116c";

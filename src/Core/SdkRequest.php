@@ -1,8 +1,8 @@
 <?php
 
-namespace QfRPC\YAFRPC\Core;
+namespace QfRPC\YARRPC\Core;
 
-use QfRPC\YAFRPC\Auth\Singer;
+use QfRPC\YARRPC\Auth\Singer;
 
 class SdkRequest
 {

@@ -1,7 +1,7 @@
 <?php
 require '../../vendor/autoload.php';
 
-use QfRPC\YAFRPC\QFRpcService;
+use QfRPC\YARRPC\QFRpcService;
 
 class DemoClass
 {

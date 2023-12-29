@@ -1,9 +1,9 @@
 {
-    "name": "qfcloud/center",
+    "name": "qfrpc/yarrpc",
     "description": "a package about use api",
     "autoload": {
         "psr-4": {
-            "QfRPC\\YAFRPC\\": "src/"
+            "QfRPC\\YARRPC\\": "src/"
         }
     },
     "authors": [

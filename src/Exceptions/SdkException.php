@@ -1,6 +1,6 @@
 <?php
 
-namespace QfRPC\YAFRPC\Exceptions;
+namespace QfRPC\YARRPC\Exceptions;
 
 use \Exception;
 
