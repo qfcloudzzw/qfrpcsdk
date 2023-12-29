@@ -1,6 +1,6 @@
 <?php
 
-require '../../vendor/autoload.php';
+require '../../rpc-autoload.php';
 use QfRPC\YARRPC\QFRpcClient;
 
 
