@@ -1,0 +1,18 @@
+{
+    "name": "qfcloud/center",
+    "description": "a package about use api",
+    "require": {
+        "guzzlehttp/guzzle": ">=6.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Qfcloud\\AuthCenter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dangcingzzw",
+            "email": "dangcingzzw@163.com"
+        }
+    ]
+}
