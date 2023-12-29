@@ -1,7 +1,7 @@
 <?php
 
 require '../../vendor/autoload.php';
-use Qfcloud\AuthCenter\QFRpcClient;
+use QfRPC\YAFRPC\QFRpcClient;
 
 
 $ak = "9624cd0312cc2f1ad4fcc47366ca116c";

@@ -1,6 +1,6 @@
 <?php
 
-namespace Qfcloud\AuthCenter\Auth;
+namespace QfRPC\YAFRPC\Auth;
 
 class Singer
 {

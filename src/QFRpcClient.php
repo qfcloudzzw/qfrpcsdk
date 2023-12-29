@@ -1,6 +1,6 @@
 <?php
 
-namespace Qfcloud\AuthCenter;
+namespace QfRPC\YAFRPC;
 
 use Qfcloud\AuthCenter\Core\SdkRequest;
 use Qfcloud\AuthCenter\Exceptions\SdkException;

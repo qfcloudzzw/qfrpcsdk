@@ -1,6 +1,6 @@
 <?php
 
-namespace Qfcloud\AuthCenter\Core;
+namespace QfRPC\YAFRPC\Core;
 
 class SdkResponse
 {

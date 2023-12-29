@@ -1,6 +1,6 @@
 <?php
 
-namespace Qfcloud\AuthCenter\Exceptions;
+namespace QfRPC\YAFRPC\Exceptions;
 
 use \Exception;
 

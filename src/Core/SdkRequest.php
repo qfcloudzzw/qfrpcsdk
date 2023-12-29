@@ -1,8 +1,8 @@
 <?php
 
-namespace Qfcloud\AuthCenter\Core;
+namespace QfRPC\YAFRPC\Core;
 
-use Qfcloud\AuthCenter\Auth\Singer;
+use QfRPC\YAFRPC\Auth\Singer;
 
 class SdkRequest
 {
