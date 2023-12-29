@@ -8,22 +8,22 @@ use QfRPC\YARRPC\Exceptions\SdkException;
 class QFRpcClient
 {
     /**
-     * @var appID
+     * @appID
      */
     protected $ak;
 
     /**
-     * @var app秘钥
+     * @app秘钥
      */
     protected $sk;
 
     /**
-     * @var 域名
+     * @域名
      */
     protected $endpoint;
 
     /**
-     * @var 客户端
+     * @客户端
      */
     protected $client;
 
@@ -81,8 +81,6 @@ class QFRpcClient
      * @desc 设置连接时间
      * @param $mic
      * @return void
-     * @author zhaozhiwei
-     * @time 2023/12/29-15:57
      */
     public function setConnectTimeOut($mic)
     {
@@ -93,8 +91,6 @@ class QFRpcClient
      * @desc 设置超时时间
      * @param $mic
      * @return void
-     * @author zhaozhiwei
-     * @time 2023/12/29-15:57
      */
     public function setTimeOut($mic)
     {

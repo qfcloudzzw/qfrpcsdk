@@ -7,12 +7,7 @@ use QfRPC\YARRPC\Exceptions\SdkException;
 
 class QFRpcService
 {
-
-    /**
-     * @var 服务
-     */
     protected $server;
-
     protected $openAuth;
     protected $ak;
     protected $sk;
@@ -28,7 +23,6 @@ class QFRpcService
         $this->ak = $ak;
         $this->sk = $sk;
         $this->openAuth = false;
-
     }
 
     public function openAuth($bool)
