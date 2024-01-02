@@ -7,7 +7,7 @@ class Demo
 {
     public function test($params)
     {
-        return $params;
+        return json_encode(['code'=>200,'msg'=>'success','data'=>$params]);
     }
 }
 

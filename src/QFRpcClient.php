@@ -4,6 +4,7 @@ namespace QfRPC\YARRPC;
 
 use GuzzleHttp\Psr7\Rfc7230;
 use QfRPC\YARRPC\Core\CreateRequestBody;
+use QfRPC\YARRPC\Core\CreateResponseBody;
 use QfRPC\YARRPC\Core\SdkRequest;
 use QfRPC\YARRPC\Exceptions\SdkException;
 
@@ -29,7 +30,10 @@ class QFRpcClient
      */
     protected $client;
 
-
+    /**
+     * @响应体
+     */
+    protected $response;
     /**
      * @param $ak
      * @param $sk
@@ -76,15 +80,21 @@ class QFRpcClient
         if( !$body instanceof CreateRequestBody){
             throw new SdkException('body not instanceof CreateRequestBody');
         }
-        $result = $this->client->call($action, [$body->getBody()]);
-
-        var_dump($result);die;
         try {
-            $result = $this->client->call($action, [$body->getBody()]);
+            $response = $this->client->call($action, [$body->getBody()]);
+            $this->response=$response;
+            return $this;
         } catch (SdkException $e) {
             throw new SdkException('send request fail！');
         }
-        return $result;
+    }
+
+    /**
+     * @desc 解析请求体
+     * @return mixed
+     */
+    public function parseResponse(){
+        return new CreateResponseBody($this->response);
     }
 
     /**
