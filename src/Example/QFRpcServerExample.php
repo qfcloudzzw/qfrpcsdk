@@ -5,14 +5,9 @@ use QfRPC\YARRPC\QFRpcService;
 
 class Demo
 {
-    public function getList($page_no, $page_size)
+    public function test($params)
     {
-        return [$page_no, $page_size];
-    }
-
-    public function getInfo($id)
-    {
-        return [$id];
+        return $params;
     }
 }
 
@@ -21,7 +16,6 @@ $sk = "1acd91b8de88864baee20f998a985b5c1cfde75e503341bc4752be06c966a53d";
 
 (new QFRpcService($ak, $sk))
     ->createServerClass(Demo::class)
-    ->openAuth(true)
     ->run();
 
 

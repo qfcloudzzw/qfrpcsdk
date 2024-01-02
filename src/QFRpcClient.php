@@ -2,6 +2,8 @@
 
 namespace QfRPC\YARRPC;
 
+use GuzzleHttp\Psr7\Rfc7230;
+use QfRPC\YARRPC\Core\CreateRequestBody;
 use QfRPC\YARRPC\Core\SdkRequest;
 use QfRPC\YARRPC\Exceptions\SdkException;
 
@@ -18,7 +20,7 @@ class QFRpcClient
     protected $sk;
 
     /**
-     * @域名
+     * @请求地址
      */
     protected $endpoint;
 
@@ -26,6 +28,7 @@ class QFRpcClient
      * @客户端
      */
     protected $client;
+
 
     /**
      * @param $ak
@@ -67,18 +70,36 @@ class QFRpcClient
      * @param $params
      * @return mixed
      */
-    public function send($action, $params)
+    public function send($action, $body)
     {
+
+        if( !$body instanceof CreateRequestBody){
+            throw new SdkException('body not instanceof CreateRequestBody');
+        }
+        $result = $this->client->call($action, [$body->getBody()]);
+
+        var_dump($result);die;
         try {
-            $result = $this->client->call($action, $params);
+            $result = $this->client->call($action, [$body->getBody()]);
         } catch (SdkException $e) {
-            throw new SdkException($e->getMessage());
+            throw new SdkException('send request fail！');
         }
         return $result;
     }
 
     /**
-     * @desc 设置连接时间
+     * @desc 创建请求参数
+     * @return CreateRequestBody
+     * @author zhaozhiwei
+     * @time 2024/1/2-10:42
+     */
+    public static function CreateRequestParams()
+    {
+        return new CreateRequestBody();
+    }
+
+    /**
+     * @desc 设置链接超时时间
      * @param $mic
      * @return void
      */

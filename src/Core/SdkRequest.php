@@ -56,6 +56,6 @@ class SdkRequest
      */
     public function getRandom()
     {
-        return random_int(1000000, 9999999);
+        return rand(1000000, 9999999);
     }
 }

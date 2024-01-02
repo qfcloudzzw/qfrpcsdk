@@ -5,6 +5,7 @@ $mapping = [
     'QfRPC\YARRPC\QFRpcClient' => __DIR__ . '/src/QFRpcClient.php',
     'QfRPC\YARRPC\QFRpcService' => __DIR__ . '/src/QFRpcService.php',
     'QfRPC\YARRPC\Core\SdkRequest' => __DIR__ . '/src/Core/SdkRequest.php',
+    'QfRPC\YARRPC\Core\CreateRequestBody' => __DIR__ . '/src/Core/CreateRequestBody.php',
     'QfRPC\YARRPC\Core\SdkResponse' => __DIR__ . '/src/Core/SdkResponse.php',
     'QfRPC\YARRPC\Auth\Auth' => __DIR__ . '/src/Auth/Auth.php',
     'QfRPC\YARRPC\Auth\Singer' => __DIR__ . '/src/Auth/Singer.php',
