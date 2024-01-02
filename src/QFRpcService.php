@@ -7,31 +7,28 @@ use QfRPC\YARRPC\Exceptions\SdkException;
 
 class QFRpcService
 {
-    protected $ak;
-    protected $sk;
 
     /**
-     * @desc 初始化方法
-     * @param $ak
-     * @param $sk
+     * @param $class
      * @throws SdkException
      */
-    public function __construct($ak, $sk)
+    public function __construct($class)
     {
-        $this->ak = $ak;
-        $this->sk = $sk;
-        (new Auth())->check($this->ak, $this->sk);
-    }
 
+        $this->service = new \Yar_Server(new $class);
+        return $this;
+
+    }
 
     /**
      * @desc 创建服务类
      * @param $class
      * @return $this
      */
-    public function createServerClass($class)
+    public function allowAppList($list)
     {
-        $this->service = new \Yar_Server(new $class);
+        (new Auth())->checkAuth($list);
+        $this->app_list=$list;
         return $this;
     }
 
