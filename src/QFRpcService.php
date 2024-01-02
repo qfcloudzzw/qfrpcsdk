@@ -20,10 +20,7 @@ class QFRpcService
     {
         $this->ak = $ak;
         $this->sk = $sk;
-//        if ($_SERVER['REQUEST_METHOD'] != 'GET'){
-            (new Auth())->check($this->ak, $this->sk);
-//        }
-
+        (new Auth())->check($this->ak, $this->sk);
     }
 
 
