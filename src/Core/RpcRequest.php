@@ -28,7 +28,7 @@ class RpcRequest
      */
     public function addItem($key, $value)
     {
-        array_push($this->body, [$key => $value]);
+        $this->body[$key]=$value;
         return $this;
     }
 
