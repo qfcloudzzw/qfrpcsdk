@@ -3,9 +3,10 @@
 namespace QfRPC\YARRPC;
 
 use GuzzleHttp\Psr7\Rfc7230;
-use QfRPC\YARRPC\Core\CreateRequestBody;
+use QfRPC\YARRPC\Core\RpcRequest;
 use QfRPC\YARRPC\Core\CreateResponseBody;
 use QfRPC\YARRPC\Core\SdkRequest;
+use QfRPC\YARRPC\Core\RpcResponse;
 use QfRPC\YARRPC\Exceptions\SdkException;
 
 class QFRpcClient
@@ -30,10 +31,7 @@ class QFRpcClient
      */
     protected $client;
 
-    /**
-     * @响应体
-     */
-    protected $response;
+
     /**
      * @param $ak
      * @param $sk
@@ -76,36 +74,44 @@ class QFRpcClient
      */
     public function send($action, $body)
     {
-
-        if( !$body instanceof CreateRequestBody){
-            throw new SdkException('body not instanceof CreateRequestBody');
+        //请求体校验
+        if (!$body instanceof RpcRequest) {
+            return new SdkException('not allow request body');
         }
-        try {
+        //请求成功失败校验
+        try{
             $response = $this->client->call($action, [$body->getBody()]);
-            $this->response=$response;
-            return $this;
-        } catch (SdkException $e) {
-            throw new SdkException('send request fail！');
+        }catch(\Yar_Client_Exception $e){
+            return new SdkException('rpc reqeust fail!');
         }
+
+        //响应体校验
+        if (!$response instanceof RpcResponse) {
+            return new SdkException('not allow response body');
+        }
+        return $response;
     }
 
-    /**
-     * @desc 解析请求体
-     * @return mixed
-     */
-    public function parseResponse(){
-        return new CreateResponseBody($this->response);
-    }
 
     /**
      * @desc 创建请求参数
-     * @return CreateRequestBody
+     * @return RpcRequest
      * @author zhaozhiwei
      * @time 2024/1/2-10:42
      */
-    public static function CreateRequestParams()
+    public static function CreateRpcRequest()
     {
-        return new CreateRequestBody();
+        return new RpcRequest();
+    }
+    /**
+     * @desc 创建响应参数
+     * @return RpcRequest
+     * @author zhaozhiwei
+     * @time 2024/1/2-10:42
+     */
+    public static function CreateRpcResponse()
+    {
+        return new RpcResponse();
     }
 
     /**

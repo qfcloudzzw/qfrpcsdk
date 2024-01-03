@@ -2,12 +2,34 @@
 
 namespace QfRPC\YARRPC\Exceptions;
 
-use \Exception;
 
-class SdkException extends \Exception
+class SdkException
 {
-    public function __construct($message, $code = 0, Exception $previous = null)
+
+    protected $code;
+    protected $message;
+    protected $data;
+
+    public function __construct($message='error', $code=500, $data=[])
     {
-        parent::__construct($message, $code, $previous);
+        $this->code = $code;
+        $this->message = $message;
+        $this->data = $data;
     }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
 }

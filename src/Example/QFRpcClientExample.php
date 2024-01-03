@@ -14,18 +14,16 @@ $client = (new QFRpcClient($ak, $sk))
     ->withEndpoint($endpoint)
     ->newBuilder();
 
-$params = $client::CreateRequestParams()
-    ->add('page_no', 1)
-    ->add('page_size', 10);
-print('---获取测试数据---');
+$params = $client::CreateRpcRequest()
+    ->addItem('page_no', 1)
+    ->addItem('page_size', 10);
 
-
-$list = $client->send('test', $params)->parseResponse();
-
+print('---获取测试分页列表数据---');
+$list = $client->send('getTestPageList', $params);
 if ($list->getCode() == 200) {
     var_dump($list->getData());
 } else {
-    echo 'error';
+    echo $list->getMessage();
 }
 
 exit;

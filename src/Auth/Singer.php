@@ -2,6 +2,8 @@
 
 namespace QfRPC\YARRPC\Auth;
 
+use QfRPC\YARRPC\Core\SdkRequest;
+
 class Singer
 {
 
@@ -17,5 +19,35 @@ class Singer
     {
         $str = $sk . "appId" . $ak . "timestamp" . $timestamp . $nonce;
         return base64_encode(md5($str));
+    }
+
+    /**
+     * @desc 验证签名
+     * @param $whiteList
+     * @return void
+     */
+    public function verifySign($whiteList)
+    {
+        $header = (new SdkRequest())->header();
+        $ak = $header['key'];
+        $sk = '';
+        if (!empty($whiteList)) {
+            foreach ($whiteList as $v) {
+                if ($v['ak'] == $ak) {
+                    $sk = $v['sk'];
+                }
+            }
+        }
+        $time = $header['time'];
+        $nonce = $header['nonce'];
+        if (time() - $header['time'] > 300) {
+            throw  (new \Yar_Server_Exception());
+        }
+
+        $sign = $this->sign($ak, $sk, $time, $nonce);
+
+        if ($sign != $header['sign']) {
+            throw  (new \Yar_Server_Exception());
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace QfRPC\YARRPC\Core;
 /**
  * @创建请求参数体类
  */
-class CreateRequestBody
+class RpcRequest
 {
     /**
      * @请求体
@@ -26,9 +26,9 @@ class CreateRequestBody
      * @param $value
      * @return $this
      */
-    public function add($key, $value)
+    public function addItem($key, $value)
     {
-        $this->body[$key]=$value;
+        array_push($this->body, [$key => $value]);
         return $this;
     }
 
@@ -40,4 +40,5 @@ class CreateRequestBody
     {
         return $this->body;
     }
+
 }

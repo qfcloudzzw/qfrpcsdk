@@ -3,10 +3,14 @@
 namespace QfRPC\YARRPC;
 
 use QfRPC\YARRPC\Auth\Auth;
+use QfRPC\YARRPC\Auth\Singer;
+use QfRPC\YARRPC\Auth\WhiteList;
 use QfRPC\YARRPC\Exceptions\SdkException;
+use QfRPC\YARRPC\Exceptions\ServerException;
 
 class QFRpcService
 {
+    protected $whiteList;
 
     /**
      * @param $class
@@ -14,21 +18,20 @@ class QFRpcService
      */
     public function __construct($class)
     {
-
         $this->service = new \Yar_Server(new $class);
+        $this->whiteList = [];
         return $this;
 
     }
 
     /**
-     * @desc 创建服务类
-     * @param $class
-     * @return $this
+     * @desc 配置权限秘钥对
+     * @param $ak
+     * @param $sk
      */
-    public function allowAppList($list)
+    public function allowItem($ak, $sk)
     {
-        (new Auth())->checkAuth($list);
-        $this->app_list=$list;
+        array_push($this->whiteList, ['ak' => $ak, 'sk' => $sk]);
         return $this;
     }
 
@@ -38,6 +41,10 @@ class QFRpcService
      */
     public function run()
     {
+        if (!empty($this->whiteList) && strtoupper($_SERVER['REQUEST_METHOD']) != 'GET') {
+            (new Singer())->verifySign($this->whiteList);
+        }
         $this->service->handle();
     }
+
 }
