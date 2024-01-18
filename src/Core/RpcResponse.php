@@ -10,6 +10,9 @@ class RpcResponse
 
     public function __construct()
     {
+        $this->code=200;
+        $this->message='success';
+        $this->data=[];
     }
 
     /**

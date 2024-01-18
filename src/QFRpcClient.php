@@ -5,9 +5,10 @@ namespace QfRPC\YARRPC;
 use GuzzleHttp\Psr7\Rfc7230;
 use QfRPC\YARRPC\Core\RpcRequest;
 use QfRPC\YARRPC\Core\CreateResponseBody;
-use QfRPC\YARRPC\Core\SdkRequest;
+use QfRPC\YARRPC\Handler\ClientExceptionHandler;
+use QfRPC\YARRPC\Handler\RequestHandler;
 use QfRPC\YARRPC\Core\RpcResponse;
-use QfRPC\YARRPC\Exceptions\SdkException;
+use QfRPC\YARRPC\Exceptions\ClientException;
 
 class QFRpcClient
 {
@@ -65,7 +66,7 @@ class QFRpcClient
         $this->setHeader();
         return $this;
     }
-
+   
     /**
      * @desc 发送请求
      * @param $action
@@ -74,21 +75,24 @@ class QFRpcClient
      */
     public function send($action, $body)
     {
+
         //请求体校验
         if (!$body instanceof RpcRequest) {
-            return new SdkException('not allow request body');
-        }
-        //请求成功失败校验
-        try{
-            $response = $this->client->call($action, [$body->getBody()]);
-        }catch(\Yar_Client_Exception $e){
-            return new SdkException('rpc reqeust fail!');
+            throw new ClientException('not allow request body');
         }
 
+        //请求校验
+        try {
+            $response = $this->client->call($action, [$body->getBody()]);
+        } catch (\Exception  $e) {
+            print(PHP_EOL.'--error--'. $e->getMessage().'--error--'.PHP_EOL);
+            throw new ClientException('rpc reqeust fail!');
+        }
         //响应体校验
         if (!$response instanceof RpcResponse) {
-            return new SdkException('not allow response body');
+            throw new ClientException('not allow response body');
         }
+
         return $response;
     }
 
@@ -103,6 +107,7 @@ class QFRpcClient
     {
         return new RpcRequest();
     }
+
     /**
      * @desc 创建响应参数
      * @return RpcRequest
@@ -140,7 +145,7 @@ class QFRpcClient
      */
     public function setHeader()
     {
-        $headerParam = (new SdkRequest())->buildHeader($this->ak, $this->sk);
+        $headerParam = (new RequestHandler())->buildHeader($this->ak, $this->sk);
         $this->client->SetOpt(YAR_OPT_HEADER, $headerParam);
     }
 }

@@ -20,10 +20,10 @@ $params = $client::CreateRpcRequest()
 
 print('---获取测试分页列表数据---');
 $list = $client->send('getTestPageList', $params);
-if ($list->getCode() == 200) {
-    var_dump($list->getData());
-} else {
-    echo $list->getMessage();
-}
+
+var_dump($list->getCode());
+var_dump($list->getMessage());
+var_dump($list->getData());
+
 
 exit;

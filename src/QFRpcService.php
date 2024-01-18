@@ -12,13 +12,12 @@ class QFRpcService
 {
     protected $whiteList;
 
-    /**
-     * @param $class
-     * @throws SdkException
-     */
+    protected $_instance;
+  
     public function __construct($class)
     {
-        $this->service = new \Yar_Server(new $class);
+        $this->_instance = new \Yar_Server(new $class);
+
         $this->whiteList = [];
         return $this;
 
@@ -44,7 +43,7 @@ class QFRpcService
         if (!empty($this->whiteList) && strtoupper($_SERVER['REQUEST_METHOD']) != 'GET') {
             (new Singer())->verifySign($this->whiteList);
         }
-        $this->service->handle();
+        $this->_instance->handle();
     }
 
 }

@@ -2,7 +2,9 @@
 
 namespace QfRPC\YARRPC\Auth;
 
-use QfRPC\YARRPC\Core\SdkRequest;
+use QfRPC\YARRPC\Core\Request;
+use QfRPC\YARRPC\Exceptions\ClientException;
+use QfRPC\YARRPC\Exceptions\ServerException;
 
 class Singer
 {
@@ -28,7 +30,7 @@ class Singer
      */
     public function verifySign($whiteList)
     {
-        $header = (new SdkRequest())->header();
+        $header = (new Request())->header();
         $ak = $header['key'];
         $sk = '';
         if (!empty($whiteList)) {
@@ -41,13 +43,14 @@ class Singer
         $time = $header['time'];
         $nonce = $header['nonce'];
         if (time() - $header['time'] > 300) {
-            throw  (new \Yar_Server_Exception());
+            throw new ServerException('请求超时');
         }
 
         $sign = $this->sign($ak, $sk, $time, $nonce);
 
         if ($sign != $header['sign']) {
-            throw  (new \Yar_Server_Exception());
+            throw new ServerException('签名错误');
         }
     }
+
 }
